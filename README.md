@@ -80,7 +80,7 @@ Returns a specific post by post Id.
 
 - We perform soft deletion on posts, where by we set the isDeleted to true.
 
-- When querring data we hide posts which have the value **isDeleted** set to **true.**
+- When querying data we hide posts which have the value **isDeleted** set to **true.**
 
 ![DELETE /posts/:id img](./Assets/delete-specific-post.PNG)
 

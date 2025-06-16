@@ -99,10 +99,9 @@ app.get("/posts/:id", async (req, res) => {
 app.post("/posts", async (req, res) => {
   const { title, content, authorId } = req.body;
   try {
-    const userExist = await prisma.user.findUnique({
+    const userExist = await prisma.user.findFirst({
       where: {
         id: authorId,
-        isDeleted: false,
       },
     });
 
@@ -110,14 +109,14 @@ app.post("/posts", async (req, res) => {
       res.status(404).json({ error: "user not found" });
     }
 
-    const createpost = await prisma.post.create({
+    const createPost = await prisma.post.create({
       data: {
         title,
         content,
         authorId,
       },
     });
-    res.status(200).json(createpost);
+    res.status(201).json(createPost);
   } catch (e) {
     res.status(500).json({ message: "Can't create post!" });
   }
